@@ -1,6 +1,23 @@
-﻿body {
-    padding-top: 50px;
+﻿@media (max-width:768px){
+    .navbar-nav li {
+        width: 100% !important;
+    }
+
+    .navbar-nav{
+        margin:0px !important;
+    }
+
+    .navbar-collapse{
+        padding:0px !important;
+    }
+}
+
+
+body {
+    background-color:#082534;
+    padding-top: 0px;
     padding-bottom: 20px;
+    font-family:'Assistant', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -8,6 +25,48 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+h1,h2,h3,h4,h5,h6{
+    font-family:'Cairo', sans-serif;
+    display:inline-block;
+}
+
+.white-text{
+    color:#FFF;
+}
+
+.grey-text {
+    color: #BBB;
+}
+
+.navbar-nav {
+    width:100%;
+    display:block;
+    background-color: #114e6d;
+}
+
+.navbar-header {
+    width: 100%;
+    display: block;
+    background-color: #114e6d;
+}
+
+.navbar-toggle .icon-bar{
+    background-color:#fff;
+}
+
+.navbar-nav li{
+    width:33.3%;
+
+}
+
+.navbar-nav li a{
+    color:#FFF;
+}
+
+    .navbar-nav li a:hover {
+        color: #114e6d;
+    }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

@@ -25,6 +25,13 @@ namespace ACWebsite
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            
+            BundleTable.EnableOptimizations = true;
+            bundles.UseCdn = true;
+
+            bundles.Add(new StyleBundle("~/Content/fonts",
+                "https://fonts.googleapis.com/css?family=Assistant|Cairo&display=swap"
+                ));
         }
     }
 }
