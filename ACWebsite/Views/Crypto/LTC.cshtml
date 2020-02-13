@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ACWebsite.Models.returnStats>
+﻿@model ACWebsite.Models.returnStats
 
 @{
     ViewBag.Title = "View";
@@ -7,58 +7,60 @@
 
 <h2>View</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+<div>
+    <h4>returnStats</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.open)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.open)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.high)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.high)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.low)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.low)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.volume)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volume)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.last)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.volume_30day)
-        </th>
-        <th></th>
-    </tr>
+        </dt>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.open)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.high)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.low)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.volume)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.last)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.volume_30day)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+        <dd>
+            @Html.DisplayFor(model => model.volume_30day)
+        </dd>
 
-</table>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
