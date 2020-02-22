@@ -17,36 +17,51 @@ namespace ACWebsite.Controllers
             return View();
         }
 
-        public async Task<ActionResult> LTC()
+        public ActionResult LTC()
         {
-            string Baseurl = "https://api.pro.coinbase.com/";
+            // Calling the API method from the BTC controller method, and passing in new parameter
+            returnStats result = Task.Run(async () => await CallAPI("products/LTC-GBP/stats")).GetAwaiter().GetResult();
+            return View(result);
+        }
 
-            returnStats LTCInfo = new returnStats();
+        public ActionResult BTC()
+        {
+            // Calling the API method from the BTC controller method, and passing in new parameter
+            returnStats result = Task.Run(async () => await CallAPI("products/BTC-GBP/stats")).GetAwaiter().GetResult();
+            return View(result);
+        }
+
+        //Created a single API call method for easy reuse.
+        public async Task<returnStats> CallAPI(string productlist){
+
+            returnStats Crypto = new returnStats();
 
             using (var client = new HttpClient())
             {
-                //Passing service base url  
-                client.BaseAddress = new Uri(Baseurl);
-            
+                //Passing service base url - the Coinbase Pro API
+                client.BaseAddress = new Uri("https://api.pro.coinbase.com/");
+
                 client.DefaultRequestHeaders.Clear();
-                //Define request data format  
+                //Define request data format - this is JSON
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Add("User-Agent", "AC Website C# MVC");
-                //Sending request to find the LTC GBP stats  
-                HttpResponseMessage Res = await client.GetAsync("products/LTC-GBP/stats");
+                //Coinbase Pro API requires a User-Agent defined
+                client.DefaultRequestHeaders.Add("User-Agent", "Anthony Cook");
+                //Sending request to find the stats which are passed in from the relevant method call.  
+                HttpResponseMessage Res = await client.GetAsync(productlist);
                 //Checking the response is successful or not
                 if (Res.IsSuccessStatusCode)
                 {
-                    //Storing the response details recieved from web api   
-                    var LTCResponse = Res.Content.ReadAsStringAsync().Result;
-            
-                    //Deserializing the response recieved from web api and storing into the Object 
-                    LTCInfo = JsonConvert.DeserializeObject<returnStats>(LTCResponse);
-            
+                    //Storing the response details recieved from the API 
+                    var CryptoResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the CryptoResponse recieved from the API and storing it in Crypto Object
+                    Crypto = JsonConvert.DeserializeObject<returnStats>(CryptoResponse);
+
                 }
                 //returning the employee list to view  
-                return View(LTCInfo);
+                return Crypto;
             }
+
         }
     }
 }

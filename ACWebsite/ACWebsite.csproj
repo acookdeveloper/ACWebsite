@@ -170,6 +170,7 @@
     <Content Include="Views\Shared\_ACWebsiteTemplate.cshtml" />
     <Content Include="Views\Crypto\Index.cshtml" />
     <Content Include="Views\Crypto\LTC.cshtml" />
+    <Content Include="Views\Crypto\BTC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
