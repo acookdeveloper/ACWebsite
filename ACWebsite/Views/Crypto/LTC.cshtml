@@ -1,7 +1,7 @@
 ﻿@model ACWebsite.Models.returnStats
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Litecoin 24 Hour Statistics - Anthony Cook";
     Layout = "~/Views/Shared/_ACWebsiteTemplate.cshtml";
 }
 
@@ -36,18 +36,26 @@
         </div>
         <hr />
         <div class="row">
-            <div class="col-lg-12"><h3>Volume & Growth / Loss Today</h3></div>
-            <div class="col-lg-4">
+            <div class="col-lg-12"><h3>Growth / Loss Today</h3></div>
+            <div class="col-lg-6">
                 <h4 style="display:block;"><strong>Day Growth / Loss - @DateTime.Today.ToShortDateString()</strong></h4>
                 £@Html.DisplayFor(model => model.growthtoday)
             </div>
-            <div class="col-lg-4">
-                <h4 style="display:block;"><strong>Day Volume - @DateTime.Today.ToShortDateString()</strong></h4>
-                @Html.DisplayFor(model => model.volume) BTC
+            <div class="col-lg-6">
+                <h4 style="display:block;"><strong>Day Growth / Loss Percentage - @DateTime.Today.ToShortDateString()</strong></h4>
+                @Html.DisplayFor(model => model.growthtodaypct)%
             </div>
-            <div class="col-lg-4">
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-12"><h3>Volumes</h3></div>
+            <div class="col-lg-6">
+                <h4 style="display:block;"><strong>Day Volume - @DateTime.Today.ToShortDateString()</strong></h4>
+                @Html.DisplayFor(model => model.volume) LTC
+            </div>
+            <div class="col-lg-6">
                 <h4 style="display:block;"><strong>Day 30 Days Volume - @DateTime.Today.ToShortDateString()</strong></h4>
-                @Html.DisplayFor(model => model.volume_30day) BTC
+                @Html.DisplayFor(model => model.volume_30day) LTC
             </div>
         </div>
 

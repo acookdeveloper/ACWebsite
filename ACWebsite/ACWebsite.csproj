@@ -172,6 +172,7 @@
     <Content Include="Views\Crypto\Index.cshtml" />
     <Content Include="Views\Crypto\LTC.cshtml" />
     <Content Include="Views\Crypto\BTC.cshtml" />
+    <Content Include="Views\Crypto\ETH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

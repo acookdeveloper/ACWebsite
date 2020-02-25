@@ -19,7 +19,7 @@ namespace ACWebsite.Controllers
 
         public ActionResult LTC()
         {
-            // Calling the API method from the BTC controller method, and passing in new parameter
+            // Calling the API method from the LTC controller method, and passing in new parameter
             returnStats result = Task.Run(async () => await CallAPI("products/LTC-GBP/stats")).GetAwaiter().GetResult();
             return View(result);
         }
@@ -28,6 +28,13 @@ namespace ACWebsite.Controllers
         {
             // Calling the API method from the BTC controller method, and passing in new parameter
             returnStats result = Task.Run(async () => await CallAPI("products/BTC-GBP/stats")).GetAwaiter().GetResult();
+            return View(result);
+        }
+
+        public ActionResult ETH()
+        {
+            // Calling the API method from the BTC controller method, and passing in new parameter
+            returnStats result = Task.Run(async () => await CallAPI("products/ETH-GBP/stats")).GetAwaiter().GetResult();
             return View(result);
         }
 
@@ -57,14 +64,13 @@ namespace ACWebsite.Controllers
                     //Deserializing the CryptoResponse recieved from the API and storing it in Crypto Object
                     Crypto = JsonConvert.DeserializeObject<returnStats>(CryptoResponse);
 
-                    //adding value to the Model.
-                    //Q: Why is this price calculation working the wrong way around?
+                    //adding Growth Value & Percentage to the Model.
                     Crypto.growthtoday = Crypto.last - Crypto.open;
-
-                    //TODO: add the percentage of Day Growth / Loss
+                    Crypto.growthtodaypct = ((Crypto.last - Crypto.open) / Math.Abs(Crypto.open)) * 100;
 
                     // Convert the data to be 2 decimal places only
                     Crypto.growthtoday = Math.Round(Crypto.growthtoday, 2);
+                    Crypto.growthtodaypct = Math.Round(Crypto.growthtodaypct, 2);
                     Crypto.volume = Math.Round(Crypto.volume, 2);
                     Crypto.volume_30day = Math.Round(Crypto.volume_30day, 2);
 
